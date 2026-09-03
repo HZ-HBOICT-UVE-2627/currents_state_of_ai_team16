@@ -43,39 +43,86 @@ For every guest lecture make a summary (individually) and combine them later. Us
    - How can we design workflows that make AI output consistent and repeatable?
    - How much context is necessary before AI becomes genuinely useful for complex tasks?
 
-### Lecture 3: Applying AI yourself in a case study
+### Wednesday, lecture 1
 
 1. Summary
 
-   The hackathon work showed that AI can support rapid product creation when the team has a clear project scope and working process. In our case, we used AI to help transform a specification into a functional Svelte app, refine the UI, and improve the project’s operational setup.
+   Jerry Keirsmaeker is an AI transformation leader at Aceve. Aceve refers to themselves as an “AI first” company. By this they mean that they actively use AI in each process that happens within the company. During his lecture Jerry specifically referred to three key fields, in the product, in how they work and in who they hire. In the product they claim to use AI-driven insight for an industry that’s currently driven on paper, gut feel and one very load-bearing spreadsheet. In how they work he talked about how agents are the default first attempt, not the innovation-lab experiment. Then in who they hire, they specifically look for people who can direct and verify ai – not who can type the fastest.
+
+   For the next part of the lecture the subject moved away from Aceve specifically and more into general AI definition and opinions. AI agents were defined to consist of three things: A model, tools and loop + content. The model reasons, plans and writes while the tools edit files and run the actual code. The loop + content functions as the memory.
+   During the lecture the different opinions on AI were discussed. Two main sides were posed, one side has an extremely negative view on AI, claiming that it will take all jobs and the world is going to end while the other is rather on the extreme positive side, which claims that AI is going to be the solution to all current problems. Jerry Keirsmaeker, had proposed the opinion that the trust was more in the middle of those, where AI would be a helpful tool but not a complete answer on its own.
+
+   In the final part of the lecture, the lecturer advised us as future junior software engineers that the most important thing for the future job market would be to be adaptable. He suggested that during our study we should try out different roles within our teams, and learn to master each as well as keeping up with the newest changes within the tech industry. That way, by the time we are ready to graduate and enter the job market, we are the best possible candidates for the current industry.
+
 
 2. Key insights
 
-   - Breaking a problem into small steps helps AI deliver useful results.
-   - Iteration matters: prototypes and refinements improve the final outcome.
-   - Good prompts and clear constraints produce better code more efficiently.
+   - The job of a software developer is going to shift from manually writing code, to managing and reviewing AI written code.
+   - AI doesn’t replace the function of a software developer, it replaces the most time costly procedures.
+   - For future software developers, it is more important to learn how to properly direct and review AI, rather than to learn how to code fast.
+
 
 3. Questions
 
-   - How do we know when a generated solution is “good enough” versus when we need to redesign it?
-   - What is the optimal balance between AI speed and maintaining engineering quality?
+   - What is AI going to do to the software developer career?
+   - Is AI going to replace software engineers?
+   - What tasks are AI agents usefull for and which ones are they less usefull for?
 
-### Lecture 4: AI in education and Demo day
+### Wednesday, lecture 2
 
 1. Summary
 
-   AI in education is not just about automation; it is about teaching people how to think critically with intelligent tools. The demo day perspective also made clear that business value, user experience, and process quality matter as much as technical implementation.
+   The lecture began with the lecturer talking about his experience working with AI assistants. He explained how in his own personal life he uses a fitness AI assistant to help him plan schedules and discuss his health. With this example he explained why an AI assistant can be so much more useful that simply talking to an AI chatbot and sending individual prompts. With an assistant, the AI has the proper context and background knowledge to know exactly how to help you best. When using individual prompts, the AI doesn't know you, your lifestyle and your preferences. 
+
+   For this same reason, his marketing company also makes use of AI assistants, and actually has a whole team of AI assistants, including one called Marketing Mike. This team manages things like, marketing strategy, social media and other important aspects of the company. 
+
+   For the next part of the lecture we were taught how to create our own AI assistant to help with a specific task using the BUILD format, in which each letter describes an individual phase. The first is Begin, which is where you pick your task. Second is Unpack, which is where you work out the skills. Then the third is Input where you map the knowledge. Fourth is Layout which is where you write the instructions. Finally there is the Debug phase which is for testing and improving.The first two stages, building and unpacking is where you work out what your are building and the last three: input, layout and debug is where you actually build it. 
+
+   After the theoretical explanation we were given the link to a website with instruction to actually make our own AI assistant. In the first stage we’re given a prompt we have to copy and paste into an ai chat. After that the AI in return asks questions about what regular problems you might want an assistant for. After answering what kind of task you need an assistant for, the AI inquires more about what the AI should keep in mind to perform your task to the best of its abilities. When you are done answering questions you get a text file with all the information about what task your AI assistant should perform and what to keep in mind while doing so. After that you move onto phase 2, here you have to once again pase a prompt into the chatbox along wit the file you received last time. Here again more detailed questions are asked about how to perform the task as best as possible. At the end of these questions you once again get a text file with the detailed information all structured and written down. The next and last phase we were able to get to this lecture, in this chat you once again paste the two previous files and a new prompt.  It reads your two files, asks three clarifying questions, and then writes the instructions: a role, the task, how it works, what it knows about you, the style, and the opening question it should ask you. It also explains how to install it, paid or free. You end up with assistant-instructions.md, deliberately short, because the detail already sits in your other two files. 
+
+   Then because of a lack of time we weren’t able to get to the last prompt. In the last phase  you give it your instructions plus one example of output that disappointed you. It works out whether the problem lies in the instructions, in the knowledge, or in how you asked, and it names the exact line to change and where. You get a rewritten version back. Use it this week, on real work. After this the only step left is to actually install the assistant.
+
 
 2. Key insights
 
-   - Technical quality is necessary, but communication and relevance are equally important.
-   - Products should be understandable to non-technical stakeholders.
-   - Demonstrating the process and human oversight is part of the value of AI work.
+   - AI assistants are more useful for long term problems/tasks than single prompts.
+   - AI assistant are relatively easy to build and can assist with day to day problems.
+
 
 3. Questions
 
-   - How do we communicate AI-assisted work in a way that builds trust rather than suspicion?
-   - What evidence should be shown to prove that AI was used responsibly?
+   - What are the benefits of building and using an AI assistent?
+   - What is the diffrence between an AI assisnt and sending individual prompt to an AI chat?
+
+### Wednesday, lecture 3
+
+1. Summary
+
+   During this lecture we learned about local LLM’s. Local LLM’s mean that you are not dependent on an existing service, you are dependent on your own hardware. All the data you send this LLM stays on your own computer, your data cannot be leaked or saved or stored. This also means that the costs are predictable since you need to invest in the hardware, where with a whole organization its is harder to measure. This also means that the only latency is based on what your hardware can support. 
+
+   A model has a number of parameters. Parameters transform data, which entails that data goes through a lot of tensors and something comes out. The more of these parameters you have, the bigger your model is going to be.
+
+   Most models are provided in a format called safetensors, the community produced their own GGUF’s. 
+
+   Python pickles are effectively serialization. Most models are trained using python. 
+
+   What happens is that when a model is trained, it gets output in a .bin format, which is then a pickle, which is just a data street.
+
+   Quantization is the process of reducing the numbers of bits to represent one of those numbers. Which means you will still have the same number but just slightly less accurate.
+
+   Then after explaining this theory, the lecturer continued by showing where to download these models, as well as the quantizations. After this he demo'd the LLM by asking it questions even while the internet was turned off.
+
+
+2. Key insights
+
+   - Local LLM’s run on your own hardware, and therefore don’t need internet.
+
+3. Questions
+
+   - What are local LLM’s?
+   - What is quantization?
+   - What are safetensors?
+
 
 ## You, Human, Technology and AI (individual)
 
