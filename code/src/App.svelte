@@ -30,15 +30,22 @@
     { id: 'seed-7', type: 'expense', category: 'Utilities', amount: 160, date: '2026-07-04', note: 'Electricity + internet', recurring: true },
   ];
 
+/** @type {Array<any>} */
   let transactions = [];
   let darkMode = false;
+  /** @type {HTMLCanvasElement | undefined} */
   let doughnutCanvas;
+  /** @type {HTMLCanvasElement | undefined} */
   let trendCanvas;
+  /** @type {any} */
   let doughnutChart;
+  /** @type {any} */
   let trendChart;
   let ready = false;
+  /** @type {HTMLInputElement | undefined} */
   let fileInput;
   let formMode = 'add';
+  /** @type {ReturnType<typeof makeBlankForm>} */
   let form = makeBlankForm();
 
   function makeBlankForm() {
