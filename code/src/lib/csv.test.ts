@@ -1,8 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-// @ts-ignore - VS Code sometimes reports a false-positive resolution warning for this local JS module.
-import { serializeCsv, parseCsv } from './csv.js';
+import { serializeCsv, parseCsv } from './csv.ts';
 
 test('serializeCsv writes a proper CSV table with one value per cell', () => {
   const rows = [

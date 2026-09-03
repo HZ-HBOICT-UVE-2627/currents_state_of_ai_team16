@@ -1,13 +1,26 @@
-import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, getCategoryChoicesForType } from '../categories.js';
+import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, getCategoryChoicesForType } from '../categories.ts';
+import type { TransactionForm, TransactionType } from '../types';
 
-export function validateTransactionInput(form) {
+export function validateTransactionInput(form: TransactionForm): {
+  valid: boolean;
+  error: string | null;
+  normalized: {
+    id: string | null;
+    type: TransactionType;
+    category: string;
+    amount: number;
+    date: string;
+    note: string;
+    recurring: boolean;
+  };
+} {
   const amount = Number(form.amount);
 
   if (!form.date) {
     return {
       valid: false,
       error: 'A transaction date is required.',
-      normalized: { ...form, amount: NaN },
+      normalized: { ...form, amount: Number.NaN },
     };
   }
 
@@ -15,7 +28,7 @@ export function validateTransactionInput(form) {
     return {
       valid: false,
       error: 'Amount must be a positive number.',
-      normalized: { ...form, amount: NaN },
+      normalized: { ...form, amount: Number.NaN },
     };
   }
 
@@ -41,27 +54,31 @@ export function validateTransactionInput(form) {
   };
 }
 
-export function validateImportedCsvRows(importedRows) {
+export function validateImportedCsvRows(importedRows: unknown[]): {
+  valid: boolean;
+  error: string | null;
+  rows: Array<Record<string, unknown>>;
+} {
   if (!Array.isArray(importedRows)) {
     return { valid: false, error: 'No rows were imported.', rows: [] };
   }
 
   const validRows = importedRows.filter((row) => {
     if (!row || typeof row !== 'object') return false;
-    return Number.isFinite(Number(row.amount)) && Number(row.amount) > 0 && row.date;
+    return Number.isFinite(Number((row as Record<string, unknown>).amount)) && Number((row as Record<string, unknown>).amount) > 0 && (row as Record<string, unknown>).date;
   });
 
   if (validRows.length === 0) {
     return { valid: false, error: 'Imported CSV data was missing valid date or amount fields.', rows: [] };
   }
 
-  return { valid: true, error: null, rows: validRows };
+  return { valid: true, error: null, rows: validRows as Array<Record<string, unknown>> };
 }
 
-export function getDefaultTransactionType() {
+export function getDefaultTransactionType(): TransactionType {
   return 'expense';
 }
 
-export function getDefaultCategoryForType(type) {
+export function getDefaultCategoryForType(type: TransactionType): string {
   return getCategoryChoicesForType(type)[0];
 }

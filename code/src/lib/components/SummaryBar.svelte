@@ -1,7 +1,8 @@
-<script>
-  import { formatMoney } from '../finance.js';
+<script lang="ts">
+  import { formatMoney } from '../finance.ts';
+  import type { SummaryTotals } from '../types';
 
-  export let monthSummary = { income: 0, expenses: 0, net: 0 };
+  export let monthSummary: SummaryTotals = { income: 0, expenses: 0, net: 0 };
   export let runningBalance = 0;
 </script>
 

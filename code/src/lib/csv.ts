@@ -2,7 +2,7 @@ const CSV_QUOTE = '"';
 const CSV_DELIMITER = ',';
 const CSV_ROW_BREAK = '\r\n';
 
-export function escapeCsvValue(value) {
+export function escapeCsvValue(value: string | number | boolean | null | undefined): string {
   const stringValue = String(value ?? '');
 
   if (/[",\r\n]/.test(stringValue)) {
@@ -12,16 +12,16 @@ export function escapeCsvValue(value) {
   return stringValue;
 }
 
-export function serializeCsv(rows) {
+export function serializeCsv(rows: Array<Array<string | number | boolean | null | undefined>>): string {
   return rows
     .map((row) => row.map((cell) => escapeCsvValue(cell)).join(CSV_DELIMITER))
     .join(CSV_ROW_BREAK);
 }
 
-export function parseCsv(content) {
+export function parseCsv(content: string): string[][] {
   const normalizedContent = content.replace(/^\uFEFF/, '');
-  const rows = [];
-  let currentRow = [];
+  const rows: string[][] = [];
+  let currentRow: string[] = [];
   let currentValue = '';
   let insideQuotes = false;
 

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { getCategoryChoicesForType, normalizeImportedCategory, EXPENSE_CATEGORIES, INCOME_CATEGORIES } from './categories.js';
+import { getCategoryChoicesForType, normalizeImportedCategory, EXPENSE_CATEGORIES, INCOME_CATEGORIES } from './categories.ts';
 
 test('income categories are returned for income transactions', () => {
   assert.deepEqual(getCategoryChoicesForType('income'), INCOME_CATEGORIES);

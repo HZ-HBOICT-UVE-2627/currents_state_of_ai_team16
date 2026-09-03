@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { validateTransactionInput } from './validationService.js';
+import { validateTransactionInput } from './validationService.ts';
 
 test('valid transaction input is accepted', () => {
   const result = validateTransactionInput({

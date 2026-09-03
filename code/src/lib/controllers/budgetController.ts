@@ -3,11 +3,12 @@ import {
   INCOME_CATEGORIES,
   getCategoryChoicesForType,
   normalizeImportedCategory,
-} from '../categories.js';
-import { toIsoDate } from '../finance.js';
-import { validateTransactionInput } from '../services/validationService.js';
+} from '../categories.ts';
+import { toIsoDate } from '../finance.ts';
+import type { CategoryBreakdownEntry, ImportRow, SummaryTotals, Transaction, TransactionForm, TransactionType, TrendChartData } from '../types';
+import { validateTransactionInput } from '../services/validationService.ts';
 
-export function makeId() {
+export function makeId(): string {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
     return crypto.randomUUID();
   }
@@ -15,7 +16,7 @@ export function makeId() {
   return `txn-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
-export function makeBlankForm() {
+export function makeBlankForm(): TransactionForm {
   return {
     id: null,
     type: 'expense',
@@ -27,7 +28,7 @@ export function makeBlankForm() {
   };
 }
 
-export function updateFormType(form) {
+export function updateFormType(form: TransactionForm): TransactionForm {
   const validCategories = form.type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
 
   if (!validCategories.includes(form.category)) {
@@ -37,14 +38,27 @@ export function updateFormType(form) {
   return form;
 }
 
-export function submitTransaction({ transactions, form, formMode }) {
+export function submitTransaction({
+  transactions,
+  form,
+  formMode,
+}: {
+  transactions: Transaction[];
+  form: TransactionForm;
+  formMode: 'add' | 'edit';
+}): {
+  transactions: Transaction[];
+  changed: boolean;
+  nextForm: TransactionForm;
+  nextMode: 'add' | 'edit';
+} {
   const validation = validateTransactionInput(form);
 
   if (!validation.valid) {
     return { transactions, changed: false, nextForm: makeBlankForm(), nextMode: formMode };
   }
 
-  const submitted = {
+  const submitted: Transaction = {
     id: form.id ?? makeId(),
     type: form.type,
     category: validation.normalized.category,
@@ -66,7 +80,10 @@ export function submitTransaction({ transactions, form, formMode }) {
   };
 }
 
-export function startEditTransaction(item) {
+export function startEditTransaction(item: Transaction): {
+  formMode: 'edit';
+  form: TransactionForm;
+} {
   return {
     formMode: 'edit',
     form: {
@@ -81,12 +98,12 @@ export function startEditTransaction(item) {
   };
 }
 
-export function removeTransactionFromList(transactions, id) {
+export function removeTransactionFromList(transactions: Transaction[], id: string): Transaction[] {
   return transactions.filter((item) => item.id !== id);
 }
 
-export function confirmImports(transactions, pendingImportRows) {
-  const imported = pendingImportRows.map((row) => ({
+export function confirmImports(transactions: Transaction[], pendingImportRows: ImportRow[]): Transaction[] {
+  const imported: Transaction[] = pendingImportRows.map((row) => ({
     id: makeId(),
     type: row.type,
     category: normalizeImportedCategory(row.type, row.category),
@@ -99,7 +116,7 @@ export function confirmImports(transactions, pendingImportRows) {
   return [...imported, ...transactions];
 }
 
-export function calculateMonthSummary(items, targetMonth = new Date()) {
+export function calculateMonthSummary(items: Transaction[], targetMonth = new Date()): SummaryTotals {
   const start = new Date(targetMonth.getFullYear(), targetMonth.getMonth(), 1);
   const end = new Date(targetMonth.getFullYear(), targetMonth.getMonth() + 1, 0, 23, 59, 59, 999);
 
@@ -119,7 +136,7 @@ export function calculateMonthSummary(items, targetMonth = new Date()) {
   return { income, expenses, net: income - expenses };
 }
 
-export function calculateYearSummary(items, targetYear = new Date().getFullYear()) {
+export function calculateYearSummary(items: Transaction[], targetYear = new Date().getFullYear()): SummaryTotals {
   const yearEntries = items.filter((entry) => {
     const date = new Date(entry.date);
     return date.getFullYear() === targetYear;
@@ -136,8 +153,8 @@ export function calculateYearSummary(items, targetYear = new Date().getFullYear(
   return { income, expenses, net: income - expenses };
 }
 
-export function calculateCategoryBreakdown(items) {
-  const map = new Map();
+export function calculateCategoryBreakdown(items: Transaction[]): CategoryBreakdownEntry[] {
+  const map = new Map<string, number>();
 
   items
     .filter((entry) => entry.type === 'expense')
@@ -151,10 +168,10 @@ export function calculateCategoryBreakdown(items) {
     .sort((left, right) => right.total - left.total);
 }
 
-export function calculateTrendData(items) {
-  const labels = [];
-  const income = [];
-  const expense = [];
+export function calculateTrendData(items: Transaction[]): TrendChartData {
+  const labels: string[] = [];
+  const income: number[] = [];
+  const expense: number[] = [];
   const now = new Date();
 
   for (let offset = 11; offset >= 0; offset -= 1) {
@@ -176,6 +193,6 @@ export function calculateTrendData(items) {
   return { labels, income, expense };
 }
 
-export function getCategoryOptions(type) {
+export function getCategoryOptions(type: TransactionType): string[] {
   return getCategoryChoicesForType(type);
 }

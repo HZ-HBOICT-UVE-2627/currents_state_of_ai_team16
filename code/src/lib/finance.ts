@@ -1,4 +1,4 @@
-import { parseCsv, serializeCsv } from './csv.js';
+import { parseCsv, serializeCsv } from './csv.ts';
 import {
   ALL_CATEGORIES,
   EXPENSE_CATEGORIES,
@@ -6,15 +6,16 @@ import {
   getCategoryChoicesForType,
   getDefaultCategoryForType,
   normalizeImportedCategory,
-} from './categories.js';
+} from './categories.ts';
+import type { ImportRow, Transaction, TransactionType } from './types';
 
-export const categories = [...ALL_CATEGORIES];
-export const incomeCategories = [...INCOME_CATEGORIES];
-export const expenseCategories = [...EXPENSE_CATEGORIES];
-export const defaultImportType = /** @type {'expense'} */ ('expense');
-export const defaultImportCategory = /** @type {'Groceries'} */ (getDefaultCategoryForType(defaultImportType));
+export const categories: string[] = [...ALL_CATEGORIES];
+export const incomeCategories: string[] = [...INCOME_CATEGORIES];
+export const expenseCategories: string[] = [...EXPENSE_CATEGORIES];
+export const defaultImportType: TransactionType = 'expense';
+export const defaultImportCategory = getDefaultCategoryForType(defaultImportType);
 
-export function formatMoney(value) {
+export function formatMoney(value: number | string): string {
   const numericValue = Number(value) || 0;
   return new Intl.NumberFormat('en-GB', {
     style: 'currency',
@@ -23,24 +24,28 @@ export function formatMoney(value) {
   }).format(numericValue);
 }
 
-export function toIsoDate(value = new Date()) {
+export function toIsoDate(value: Date = new Date()): string {
   const local = new Date(value.getTime() - value.getTimezoneOffset() * 60000);
   return local.toISOString().slice(0, 10);
 }
 
 export { getCategoryChoicesForType, normalizeImportedCategory };
 
-export function parseImportAmount(value) {
+export function parseImportAmount(value: string | number): number {
   const sanitized = String(value ?? '').replace(/[$€£,\s]/g, '').trim();
   const numericValue = Number(sanitized);
-  return Number.isFinite(numericValue) ? numericValue : NaN;
+  return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-export function normalizeCsvHeader(value) {
+export function normalizeCsvHeader(value: string | null | undefined): string {
   return String(value ?? '').trim().toLowerCase().replace(/\s+/g, '');
 }
 
-export function findRequiredColumnIndexes(row) {
+export function findRequiredColumnIndexes(row: string[]): {
+  dateIndex: number;
+  amountIndex: number;
+  noteIndex: number;
+} {
   const headers = row.map((header) => normalizeCsvHeader(header));
 
   return {
@@ -50,7 +55,7 @@ export function findRequiredColumnIndexes(row) {
   };
 }
 
-export function createDefaultImportRow(dateValue, amountValue, noteValue) {
+export function createDefaultImportRow(dateValue: string, amountValue: number, noteValue: string): ImportRow | null {
   const parsedDate = new Date(dateValue);
 
   if (!dateValue || !Number.isFinite(amountValue) || amountValue <= 0 || Number.isNaN(parsedDate.getTime())) {
@@ -67,7 +72,7 @@ export function createDefaultImportRow(dateValue, amountValue, noteValue) {
   };
 }
 
-export function buildImportRowsFromCsv(csvText) {
+export function buildImportRowsFromCsv(csvText: string): ImportRow[] {
   const rows = parseCsv(csvText);
   if (rows.length < 2) return [];
 
@@ -76,8 +81,7 @@ export function buildImportRowsFromCsv(csvText) {
     return [];
   }
 
-  /** @type {Array<{ id: string, date: string, amount: number, note: string, type: 'income' | 'expense', category: string }>} */
-  const importRows = [];
+  const importRows: ImportRow[] = [];
 
   for (const values of rows.slice(1)) {
     const dateValue = values[dateIndex] ?? '';
@@ -93,7 +97,7 @@ export function buildImportRowsFromCsv(csvText) {
   return importRows;
 }
 
-export function serializeTransactionsCsv(transactions) {
+export function serializeTransactionsCsv(transactions: Transaction[]): string {
   const headers = ['id', 'type', 'category', 'amount', 'date', 'note', 'recurring'];
   const rows = transactions.map((entry) => [
     entry.id,

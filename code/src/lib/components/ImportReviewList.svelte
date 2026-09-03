@@ -1,13 +1,12 @@
-<script>
-  import { getCategoryChoicesForType } from '../finance.js';
+<script lang="ts">
+  import { getCategoryChoicesForType } from '../finance.ts';
+  import type { ImportRow } from '../types';
 
-  /** @type {Array<{ id?: string, date: string, amount: number, note: string, type: 'income' | 'expense', category: string }>} */
-  export let rows = [];
-  export let onConfirm = () => {};
-  export let onCancel = () => {};
+  export let rows: ImportRow[] = [];
+  export let onConfirm: () => void = () => {};
+  export let onCancel: () => void = () => {};
 
-  /** @param {{ id?: string, date: string, amount: number, note: string, type: 'income' | 'expense', category: string }} row */
-  function syncImportedRowCategory(row) {
+  function syncImportedRowCategory(row: ImportRow): void {
     const choices = getCategoryChoicesForType(row.type);
     row.category = choices.includes(row.category) ? row.category : choices[0];
   }
