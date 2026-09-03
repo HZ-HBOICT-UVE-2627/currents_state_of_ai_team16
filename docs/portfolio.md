@@ -142,18 +142,17 @@ Sources (example format; replace with final individual references as needed):
 
 Based on the guest lectures create at least 10 design principles that you follow when using AI for coding.
 
-1. Always understand before you paste. If you cannot explain what the generated code does line by line, you do not own it.
-2. Start with a clear specification. A good prompt is built on a precise task and measurable constraints.
-3. Use AI to accelerate iteration, not to replace reasoning. Drafts are starting points, not final answers.
-4. Validate every output. Build, run, and test code before accepting AI-generated changes.
-5. Keep prompts reusable and structured. Good prompts become repeatable workflows.
-6. Store the project context in version-controlled files so the model sees the right information.
-7. Break large tasks into smaller steps to improve accuracy and reduce confusion.
-8. Prefer simple, readable code over clever but opaque solutions.
-9. Keep responsibility with the human developer. AI should support, not excuse poor judgment.
-10. Check for privacy and data-handling risks before sharing code, prompts, or project data with external AI services.
-11. Use AI for exploration and refinement, but make final design decisions based on user value and product goals.
-12. Document assumptions and trade-offs so future changes remain understandable.
+1. Dont implement code you dont understand.
+2. Dont let ai write new code, only improve original code.
+3. Try yourself before consulting ai.
+4. Have specific and actionable.
+5. Work with one ai consistently throughout the project.
+6. Document all prompts.
+7. Push to git between ai additions, and specify ai usage.
+8. Never use ai for reasoning.
+9. Dont use ai for documentation.
+10. Allow ai for dummy data & testing.
+
 
 ## Tech Stack & Workflow (as a group)
 
@@ -182,8 +181,6 @@ Our workflow for working with AI was intentionally structured:
 6. Iterate on UI and UX issues based on visual feedback.
 7. Commit and push the verified work to GitHub.
 8. Document key decisions and reusable patterns for future improvements.
-
-This mirrors the course idea of using AI as part of a repeatable development workflow rather than as a one-off shortcut. Keeping the codebase in Git and validating regularly made the process more reliable.
 
 ## Prompting (as a group)
 

@@ -16,7 +16,7 @@ Lecture X
 
 3.  Questions
 
-## You, Human, Technology and AI (individual)
+## You, Human, Technology and AI (individual) 
 
 In 250–300 words, describe (individually) your position on the relationship between humans, technology, and AI. Support your argument with reasoning from the guest lectures, supplemented by sources you found yourself (use APA notation to reference these sources).
 
