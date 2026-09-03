@@ -1,95 +1,37 @@
 # **Portfolio Current State of AI**
 
-| **Student 1** | Team 16 |
+| **Roos Hogervorst** | 101484 |
 |---------------|----------|
-| **Student 2** | Team 16 |
+| **Mika van Os** | 088553 |
 
 ## Summaries (individual)
 
-For every guest lecture make a summary (individually) and combine them later. Use this structure to make the summary.
+### Tuesday, lecture 1. 
+> *Introduction to AI*, given by Greg
 
-### Lecture 1: AI in general
+1. **Summary**  
+    AI is in a major hype curve right now, it makes it tough for us as users to separate facts from fictions regarding this "new" tech. This lecture explored the history of AI, as well as what it can/can't do.  
+    Additionally, Greg shared his personal opinions on AI and what he consideres good/bad use of it.
 
-1. Summary
+2. **Key insights**
+    - AI systems infer things. The technology behind it is entirely based on input data by means of predictions and assumptions.
+    - There is Artificial Narrow Intelligence (ANI), Artificial General Intelligence (AGI) and Artificial Super Intelligence (ASI), currently only ANI exists truthfully.
+    - There are two primary paradigmns of AI. Connectionist AI and "GOFAI"(Good old fasion AI). GOFAI is made by humans adding a buttload of data into the AI. The AI answers by repeating the data given. Connectionist AI functions by means of inferring and finding connections/and correlations within the data- to form new answers.
 
-   The guest lectures introduced AI as a powerful set of tools for pattern recognition, language generation, content creation, and decision support. A key lesson was that AI does not replace human thinking, but it can accelerate exploration, draft work, and improve productivity when guided with clear prompts and context.
+3. **Questions**
+    - What is AI?
+    - What can AI do?
+    - What can't AI do?
+    - Does AI even work?
+    - Is AI intelligent?
 
-2. Key insights
-
-   - AI is best used as a co-pilot, not as an autonomous decision-maker.
-   - Quality depends strongly on prompt quality, task framing, and domain understanding.
-   - AI can speed up ideation, coding, documentation, and prototyping.
-   - Human review remains essential because AI can make confident mistakes.
-
-3. Questions
-
-   - How do we evaluate when an AI-generated result is trustworthy enough to use in a real product?
-   - What are the risks of relying too heavily on AI-generated code without understanding it deeply?
-
-### Lecture 2: Applying AI within our field
-
-1. Summary
-
-   The lectures related to applying AI in a specific field highlighted the importance of context. AI works best when it is grounded in real tasks, clear requirements, and professional standards. In a development context, this means using AI to support design decisions, coding tasks, testing, and documentation while keeping the project goals in view.
-
-2. Key insights
-
-   - AI is most valuable when it is tailored to a field or workflow.
-   - Reusable structures such as prompts, guidelines, and project files help produce more consistent AI output.
-   - Domain knowledge remains crucial for assessing usefulness and correctness.
-
-3. Questions
-
-   - How can we design workflows that make AI output consistent and repeatable?
-   - How much context is necessary before AI becomes genuinely useful for complex tasks?
-
-### Lecture 3: Applying AI yourself in a case study
-
-1. Summary
-
-   The hackathon work showed that AI can support rapid product creation when the team has a clear project scope and working process. In our case, we used AI to help transform a specification into a functional Svelte app, refine the UI, and improve the project’s operational setup.
-
-2. Key insights
-
-   - Breaking a problem into small steps helps AI deliver useful results.
-   - Iteration matters: prototypes and refinements improve the final outcome.
-   - Good prompts and clear constraints produce better code more efficiently.
-
-3. Questions
-
-   - How do we know when a generated solution is “good enough” versus when we need to redesign it?
-   - What is the optimal balance between AI speed and maintaining engineering quality?
-
-### Lecture 4: AI in education and Demo day
-
-1. Summary
-
-   AI in education is not just about automation; it is about teaching people how to think critically with intelligent tools. The demo day perspective also made clear that business value, user experience, and process quality matter as much as technical implementation.
-
-2. Key insights
-
-   - Technical quality is necessary, but communication and relevance are equally important.
-   - Products should be understandable to non-technical stakeholders.
-   - Demonstrating the process and human oversight is part of the value of AI work.
-
-3. Questions
-
-   - How do we communicate AI-assisted work in a way that builds trust rather than suspicion?
-   - What evidence should be shown to prove that AI was used responsibly?
+4. **Reccomendations**
+    - "The Signal and the Noise" - *Nate Silver*
+    - "Fooled by Randomness" - *Nassim Nicolas Taleb*
+    - [Spurious Correlations](https://tylervigen.com/spurious-correlations) - *Tyler Vigen*
 
 ## You, Human, Technology and AI (individual)
 
-Our position is that humans should remain at the centre of technology and AI systems. AI is a powerful amplifier of productivity, but it does not replace human judgment, responsibility, or critical thinking. In the guest lectures, a recurring point was that AI works best when combined with clear goals, domain knowledge, and evaluation. This is particularly important in software development, where AI can generate code quickly but still requires understanding to validate correctness, quality, and user value.
-
-We see technology as a tool that should extend human capability rather than replace it. AI can help with research, brainstorming, coding, testing, and documentation, but it cannot fully replace the human abilities of reflection, ethics, problem framing, and real-world judgment. This view is especially relevant in a team project like ours, where we used AI to turn a specification into a working app, improve UI details, and automate deployment setup. The work was faster and more structured because of AI, but the final decisions still depended on us understanding the code, verifying the output, and shaping the product to meet the user’s needs.
-
-We believe the most responsible use of AI is one that is transparent, intentional, and critically evaluated. That means using it to accelerate work, not to blindly accept results. In our project, this included reviewing generated code, checking build and runtime behaviour, and making design decisions based on usability and clarity.
-
-Sources (example format; replace with final individual references as needed):
-
-- Guest lectures, Current State of AI course, HZ University of Applied Sciences.
-- OpenAI. (2024). ChatGPT and AI productivity overview. (General reference to AI adoption and productivity trends.)
-- Russell, S., & Norvig, P. (2021). Artificial Intelligence: A Modern Approach (4th ed.). Pearson.
 
 ## Design Principles for working with AI (as a group)
 

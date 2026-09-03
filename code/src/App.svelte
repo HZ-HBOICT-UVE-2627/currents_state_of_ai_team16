@@ -20,6 +20,7 @@
     'Other',
   ];
 
+  /** @type {Transaction[]} */
   const sampleTransactions = [
     { id: 'seed-1', type: 'income', category: 'Salary', amount: 3200, date: '2026-09-01', note: 'Monthly salary', recurring: true },
     { id: 'seed-2', type: 'expense', category: 'Housing', amount: 980, date: '2026-09-02', note: 'Rent', recurring: true },
@@ -30,7 +31,27 @@
     { id: 'seed-7', type: 'expense', category: 'Utilities', amount: 160, date: '2026-07-04', note: 'Electricity + internet', recurring: true },
   ];
 
-/** @type {Array<any>} */
+  /**
+   * @typedef {'income' | 'expense'} TransactionType
+   * @typedef {Object} Transaction
+   * @property {string} id
+   * @property {TransactionType} type
+   * @property {string} category
+   * @property {number} amount
+   * @property {string} date
+   * @property {string} note
+   * @property {boolean} recurring
+   * @typedef {Object} TransactionForm
+   * @property {string | null} id
+   * @property {TransactionType} type
+   * @property {string} category
+   * @property {string | number} amount
+   * @property {string} date
+   * @property {string} note
+   * @property {boolean} recurring
+   */
+
+  /** @type {Transaction[]} */
   let transactions = [];
   let darkMode = false;
   /** @type {HTMLCanvasElement | undefined} */
@@ -45,9 +66,10 @@
   /** @type {HTMLInputElement | undefined} */
   let fileInput;
   let formMode = 'add';
-  /** @type {ReturnType<typeof makeBlankForm>} */
+  /** @type {TransactionForm} */
   let form = makeBlankForm();
 
+  /** @returns {TransactionForm} */
   function makeBlankForm() {
     return {
       id: null,
@@ -60,6 +82,7 @@
     };
   }
 
+  /** @param {Date} [value=new Date()] */
   function toIsoDate(value = new Date()) {
     const local = new Date(value.getTime() - value.getTimezoneOffset() * 60000);
     return local.toISOString().slice(0, 10);
@@ -73,12 +96,14 @@
     return `txn-${Date.now()}-${Math.random().toString(16).slice(2)}`;
   }
 
+  /** @param {number | string} value */
   function formatMoney(value) {
+    const numericValue = Number(value) || 0;
     return new Intl.NumberFormat('en-GB', {
       style: 'currency',
       currency: 'EUR',
       minimumFractionDigits: 2,
-    }).format(value || 0);
+    }).format(numericValue);
   }
 
   function applyTheme() {
@@ -149,6 +174,7 @@
     renderCharts();
   }
 
+  /** @param {Transaction} item */
   function startEditTransaction(item) {
     formMode = 'edit';
     form = {
@@ -162,6 +188,7 @@
     };
   }
 
+  /** @param {string} id */
   function removeTransaction(id) {
     transactions = transactions.filter((item) => item.id !== id);
     persistTransactions();
@@ -193,6 +220,7 @@
     URL.revokeObjectURL(url);
   }
 
+  /** @param {string} line */
   function parseCsvLine(line) {
     const cells = [];
     let current = '';
@@ -220,8 +248,9 @@
     return cells.map((cell) => cell.trim());
   }
 
+  /** @param {Event & { currentTarget: EventTarget & HTMLInputElement }} event */
   function importCsv(event) {
-    const file = event.target.files?.[0];
+    const file = event.currentTarget.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
@@ -231,8 +260,12 @@
       if (lines.length < 2) return;
 
       const headers = parseCsvLine(lines[0]).map((header) => header.toLowerCase());
-      const imported = lines.slice(1).map((line) => {
+      /** @type {Transaction[]} */
+      const imported = [];
+
+      for (const line of lines.slice(1)) {
         const values = parseCsvLine(line);
+        /** @type {Record<string, string>} */
         const row = {};
 
         headers.forEach((header, index) => {
@@ -243,18 +276,20 @@
         const type = String(row.type ?? '').toLowerCase();
         const hasValidData = ['income', 'expense'].includes(type) && Number.isFinite(amount) && amount > 0;
 
-        if (!hasValidData) return null;
+        if (!hasValidData) continue;
 
-        return {
+        const normalizedType = /** @type {TransactionType} */ (type);
+
+        imported.push({
           id: makeId(),
-          type,
+          type: normalizedType,
           category: row.category || 'Other',
           amount: Number(amount.toFixed(2)),
           date: row.date || toIsoDate(new Date()),
           note: row.note || 'Imported transaction',
           recurring: String(row.recurring || '').toLowerCase() === 'true',
-        };
-      }).filter(Boolean);
+        });
+      }
 
       if (imported.length > 0) {
         transactions = [...imported, ...transactions];
@@ -270,6 +305,7 @@
     reader.readAsText(file);
   }
 
+  /** @param {Transaction[]} items @param {Date} [targetMonth=new Date()] */
   function calculateMonthSummary(items, targetMonth = new Date()) {
     const start = new Date(targetMonth.getFullYear(), targetMonth.getMonth(), 1);
     const end = new Date(targetMonth.getFullYear(), targetMonth.getMonth() + 1, 0, 23, 59, 59, 999);
@@ -290,6 +326,7 @@
     return { income, expenses, net: income - expenses };
   }
 
+  /** @param {Transaction[]} items @param {number} [targetYear=new Date().getFullYear()] */
   function calculateYearSummary(items, targetYear = new Date().getFullYear()) {
     const yearEntries = items.filter((entry) => {
       const date = new Date(entry.date);
@@ -307,6 +344,7 @@
     return { income, expenses, net: income - expenses };
   }
 
+  /** @param {Transaction[]} items */
   function calculateCategoryBreakdown(items) {
     const map = new Map();
 
@@ -322,9 +360,13 @@
       .sort((left, right) => right.total - left.total);
   }
 
+  /** @param {Transaction[]} items */
   function calculateTrendData(items) {
+    /** @type {string[]} */
     const labels = [];
+    /** @type {number[]} */
     const income = [];
+    /** @type {number[]} */
     const expense = [];
     const now = new Date();
 
@@ -447,7 +489,7 @@
             ticks: {
               color: theme.text,
               callback(value) {
-                return formatMoney(value);
+                return formatMoney(Number(value));
               },
             },
             grid: {
@@ -479,13 +521,17 @@
     renderCharts();
   }
 
+  /** @type {{ income: number, expenses: number, net: number }} */
   $: monthSummary = calculateMonthSummary(transactions, new Date());
+  /** @type {{ income: number, expenses: number, net: number }} */
   $: yearSummary = calculateYearSummary(transactions, new Date().getFullYear());
+  /** @type {number} */
   $: runningBalance = transactions.reduce((sum, entry) => {
     if (entry.type === 'income') return sum + entry.amount;
     return sum - entry.amount;
   }, 0);
-  $: sortedTransactions = [...transactions].sort((left, right) => new Date(right.date) - new Date(left.date));
+  /** @type {Transaction[]} */
+  $: sortedTransactions = [...transactions].sort((left, right) => Number(new Date(right.date)) - Number(new Date(left.date)));
 </script>
 
 <div class="app-shell">
