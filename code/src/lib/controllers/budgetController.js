@@ -5,6 +5,7 @@ import {
   normalizeImportedCategory,
 } from '../categories.js';
 import { toIsoDate } from '../finance.js';
+import { validateTransactionInput } from '../services/validationService.js';
 
 export function makeId() {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
@@ -37,20 +38,20 @@ export function updateFormType(form) {
 }
 
 export function submitTransaction({ transactions, form, formMode }) {
-  const amount = Number(form.amount);
+  const validation = validateTransactionInput(form);
 
-  if (!Number.isFinite(amount) || amount <= 0 || !form.date) {
+  if (!validation.valid) {
     return { transactions, changed: false, nextForm: makeBlankForm(), nextMode: formMode };
   }
 
   const submitted = {
     id: form.id ?? makeId(),
     type: form.type,
-    category: form.category,
-    amount: Number(amount.toFixed(2)),
+    category: validation.normalized.category,
+    amount: Number(validation.normalized.amount.toFixed(2)),
     date: form.date,
-    note: form.note.trim() || 'No note',
-    recurring: !!form.recurring,
+    note: validation.normalized.note,
+    recurring: !!validation.normalized.recurring,
   };
 
   const nextTransactions = formMode === 'edit'
