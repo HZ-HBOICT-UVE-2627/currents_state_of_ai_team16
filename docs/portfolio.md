@@ -6,17 +6,20 @@
 
 ## Summaries (individual)
 
-### Tuesday, lecture 1. 
-> *Introduction to AI*, given by Greg
+### Tuesday, Lecture 1 
+> *Introduction to AI* - given by Greg
 
 1. **Summary**  
-    AI is in a major hype curve right now, it makes it tough for us as users to separate facts from fictions regarding this "new" tech. This lecture explored the history of AI, as well as what it can/can't do.  
+    AI is in a major hype curve right now, it makes it tough for us as users to separate facts from fictions regarding this "new" tech. This lecture explored the history of AI, as well as what it can/can't do. AI learns through a form of loss-directed teaching, this means that whenever it makes a "wrong" assumption, it will lose a point. At the end of learning, the AI will know what assumptions yield the least point loss (and usually act upon them)
     Additionally, Greg shared his personal opinions on AI and what he consideres good/bad use of it.
 
 2. **Key insights**
     - AI systems infer things. The technology behind it is entirely based on input data by means of predictions and assumptions.
     - There is Artificial Narrow Intelligence (ANI), Artificial General Intelligence (AGI) and Artificial Super Intelligence (ASI), currently only ANI exists truthfully.
     - There are two primary paradigmns of AI. Connectionist AI and "GOFAI"(Good old fasion AI). GOFAI is made by humans adding a buttload of data into the AI. The AI answers by repeating the data given. Connectionist AI functions by means of inferring and finding connections/and correlations within the data- to form new answers.
+    - Correlation is not causation. Just because two things correlate does not mean one causes the other (i.e. ice cream sales & drowning reports) - There is infinitely more non-causal relationships. AI does not understand causation.
+    - There is far more examples of AI that don't work- than AI that do.
+    - The benchmark for intelligence is biological intelligence, whether or not AI is intelligent is something to research for yourself.
 
 3. **Questions**
     - What is AI?
@@ -29,6 +32,41 @@
     - "The Signal and the Noise" - *Nate Silver*
     - "Fooled by Randomness" - *Nassim Nicolas Taleb*
     - [Spurious Correlations](https://tylervigen.com/spurious-correlations) - *Tyler Vigen*
+
+### Tuesday, Lecture 2
+> *Humans, Tech and AI* - given by Andrew
+
+1. **Summary**
+    AI exists! How do we as humans interact with it and what're things we ought to consider when interacting? Andrew tries to give some questions and considerations to keep in mind when working with AI and thinking about AI. Technology is so engrained within our day-to-day life, what happens when AI embedds itself like that and how may we respond?  
+    The integration and development of AI is quick as-is and rapidly growing faster by the day. However, AI is efficient, and humans need inefficiency to learn. The growth curve is experienced through trial and error. What cognitive strenghts may you lose when AI takes the learning curve from you?  
+    And most of all, how can this technology exist in a way that it is actually accessible to all humans equally? Can it do that to begin with? (Is equality even real?)
+
+2. **Key Insights**
+    - Technological change is always a trade-off, we traded a strong memory for the ability to read and write, for example.
+    - The advantages and disadvantages of new tech never distribute evenly among population. Often, people with more money will have more access.
+    - The medium is the message, to a person with a camera everything looks like an image. To AI everything looks like a problem to make more efficient.
+    - Technological change is not additive, but ecological. When you add something new to a stack, it will change the way you interact with it.
+    - New technologies tend to become mythic, unquestioned and taken as fact very quickly.
+
+3. **Questions**
+    - What cognitive abilities will diminish with use of AI?
+    - Who will benefit the ost of this tech, and who will be disadvantaged?
+    - How much human inneficiency will I sacrifice for this tech?
+    - What could be unpredictable and possibly irreversible effects?
+    - How can I ensure I see AI not as mythic, fact or truth, but as human-made, biased and with flaws?
+
+4. **Reccomendations**
+    - [Arte Tracks](https://simonweckert.com/arte.html) - *Simon Weckert*
+    - [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) - *Polo Club of Data Science, Georgia Tech*
+
+### Tuesday, Lecture 3
+> *State of AI in Zeeland* - given by Mischa
+
+1. **Summary**
+
+2. **Key Points**
+
+3. **Questions**
 
 ## You, Human, Technology and AI (individual)
 
