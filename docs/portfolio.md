@@ -1,43 +1,72 @@
 # **Portfolio Current State of AI**
 
-| **Student 1** | Team 16 |
+| **Roos Hogervorst** | 101484 |
 |---------------|----------|
-| **Student 2** | Team 16 |
+| **Mika van Os** | 088553 |
 
 ## Summaries (individual)
 
-For every guest lecture make a summary (individually) and combine them later. Use this structure to make the summary.
+### Tuesday, Lecture 1 
+> *Introduction to AI* - given by Greg
 
-### Lecture 1: AI in general
+1. **Summary**  
+    AI is in a major hype curve right now, it makes it tough for us as users to separate facts from fictions regarding this "new" tech. This lecture explored the history of AI, as well as what it can/can't do. AI learns through a form of loss-directed teaching, this means that whenever it makes a "wrong" assumption, it will lose a point. At the end of learning, the AI will know what assumptions yield the least point loss (and usually act upon them)
+    Additionally, Greg shared his personal opinions on AI and what he consideres good/bad use of it.
 
-1. Summary
+2. **Key insights**
+    - AI systems infer things. The technology behind it is entirely based on input data by means of predictions and assumptions.
+    - There is Artificial Narrow Intelligence (ANI), Artificial General Intelligence (AGI) and Artificial Super Intelligence (ASI), currently only ANI exists truthfully.
+    - There are two primary paradigmns of AI. Connectionist AI and "GOFAI"(Good old fasion AI). GOFAI is made by humans adding a buttload of data into the AI. The AI answers by repeating the data given. Connectionist AI functions by means of inferring and finding connections/and correlations within the data- to form new answers.
+    - Correlation is not causation. Just because two things correlate does not mean one causes the other (i.e. ice cream sales & drowning reports) - There is infinitely more non-causal relationships. AI does not understand causation.
+    - There is far more examples of AI that don't work- than AI that do.
+    - The benchmark for intelligence is biological intelligence, whether or not AI is intelligent is something to research for yourself.
 
-   The guest lectures introduced AI as a powerful set of tools for pattern recognition, language generation, content creation, and decision support. A key lesson was that AI does not replace human thinking, but it can accelerate exploration, draft work, and improve productivity when guided with clear prompts and context.
+3. **Questions**
+    - What is AI?
+    - What can AI do?
+    - What can't AI do?
+    - Does AI even work?
+    - Is AI intelligent?
 
-2. Key insights
+4. **Reccomendations**
+    - "The Signal and the Noise" - *Nate Silver*
+    - "Fooled by Randomness" - *Nassim Nicolas Taleb*
+    - [Spurious Correlations](https://tylervigen.com/spurious-correlations) - *Tyler Vigen*
 
-   - AI is best used as a co-pilot, not as an autonomous decision-maker.
-   - Quality depends strongly on prompt quality, task framing, and domain understanding.
-   - AI can speed up ideation, coding, documentation, and prototyping.
-   - Human review remains essential because AI can make confident mistakes.
+### Tuesday, Lecture 2
+> *Humans, Tech and AI* - given by Andrew
 
-3. Questions
+1. **Summary**
+    AI exists! How do we as humans interact with it and what're things we ought to consider when interacting? Andrew tries to give some questions and considerations to keep in mind when working with AI and thinking about AI. Technology is so engrained within our day-to-day life, what happens when AI embedds itself like that and how may we respond?  
+    The integration and development of AI is quick as-is and rapidly growing faster by the day. However, AI is efficient, and humans need inefficiency to learn. The growth curve is experienced through trial and error. What cognitive strenghts may you lose when AI takes the learning curve from you?  
+    And most of all, how can this technology exist in a way that it is actually accessible to all humans equally? Can it do that to begin with? (Is equality even real?)
 
-   - How do we evaluate when an AI-generated result is trustworthy enough to use in a real product?
-   - What are the risks of relying too heavily on AI-generated code without understanding it deeply?
+2. **Key Insights**
+    - Technological change is always a trade-off, we traded a strong memory for the ability to read and write, for example.
+    - The advantages and disadvantages of new tech never distribute evenly among population. Often, people with more money will have more access.
+    - The medium is the message, to a person with a camera everything looks like an image. To AI everything looks like a problem to make more efficient.
+    - Technological change is not additive, but ecological. When you add something new to a stack, it will change the way you interact with it.
+    - New technologies tend to become mythic, unquestioned and taken as fact very quickly.
 
-### Lecture 2: Applying AI within our field
+3. **Questions**
+    - What cognitive abilities will diminish with use of AI?
+    - Who will benefit the ost of this tech, and who will be disadvantaged?
+    - How much human inneficiency will I sacrifice for this tech?
+    - What could be unpredictable and possibly irreversible effects?
+    - How can I ensure I see AI not as mythic, fact or truth, but as human-made, biased and with flaws?
 
-1. Summary
+4. **Reccomendations**
+    - [Arte Tracks](https://simonweckert.com/arte.html) - *Simon Weckert*
+    - [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) - *Polo Club of Data Science, Georgia Tech*
 
-   The lectures related to applying AI in a specific field highlighted the importance of context. AI works best when it is grounded in real tasks, clear requirements, and professional standards. In a development context, this means using AI to support design decisions, coding tasks, testing, and documentation while keeping the project goals in view.
+### Tuesday, Lecture 3
+> *State of AI in Zeeland* - given by Mischa
 
-2. Key insights
+1. **Summary**
 
-   - AI is most valuable when it is tailored to a field or workflow.
-   - Reusable structures such as prompts, guidelines, and project files help produce more consistent AI output.
-   - Domain knowledge remains crucial for assessing usefulness and correctness.
+2. **Key Points**
 
+3. **Questions**
 3. Questions
 
    - How can we design workflows that make AI output consistent and repeatable?
@@ -126,17 +155,6 @@ For every guest lecture make a summary (individually) and combine them later. Us
 
 ## You, Human, Technology and AI (individual)
 
-Our position is that humans should remain at the centre of technology and AI systems. AI is a powerful amplifier of productivity, but it does not replace human judgment, responsibility, or critical thinking. In the guest lectures, a recurring point was that AI works best when combined with clear goals, domain knowledge, and evaluation. This is particularly important in software development, where AI can generate code quickly but still requires understanding to validate correctness, quality, and user value.
-
-We see technology as a tool that should extend human capability rather than replace it. AI can help with research, brainstorming, coding, testing, and documentation, but it cannot fully replace the human abilities of reflection, ethics, problem framing, and real-world judgment. This view is especially relevant in a team project like ours, where we used AI to turn a specification into a working app, improve UI details, and automate deployment setup. The work was faster and more structured because of AI, but the final decisions still depended on us understanding the code, verifying the output, and shaping the product to meet the user’s needs.
-
-We believe the most responsible use of AI is one that is transparent, intentional, and critically evaluated. That means using it to accelerate work, not to blindly accept results. In our project, this included reviewing generated code, checking build and runtime behaviour, and making design decisions based on usability and clarity.
-
-Sources (example format; replace with final individual references as needed):
-
-- Guest lectures, Current State of AI course, HZ University of Applied Sciences.
-- OpenAI. (2024). ChatGPT and AI productivity overview. (General reference to AI adoption and productivity trends.)
-- Russell, S., & Norvig, P. (2021). Artificial Intelligence: A Modern Approach (4th ed.). Pearson.
 
 ## Design Principles for working with AI (as a group)
 
