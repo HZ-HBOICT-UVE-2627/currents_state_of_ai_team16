@@ -1,5 +1,11 @@
 export type TransactionType = 'income' | 'expense';
 
+export interface CategorySettings {
+  income: string[];
+  expense: string[];
+  colors: Record<string, string>;
+}
+
 export interface Transaction {
   id: string;
   type: TransactionType;

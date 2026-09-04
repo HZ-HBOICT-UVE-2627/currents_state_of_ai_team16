@@ -28,6 +28,7 @@ export interface BudgetChartsConfig {
   categoryBreakdown: CategoryBreakdownEntry[];
   trendData: TrendChartData;
   palette?: string[];
+  categoryColors?: Record<string, string>;
   incomeColor?: string;
   expenseColor?: string;
 }
@@ -150,6 +151,7 @@ export function renderBudgetCharts({
   categoryBreakdown,
   trendData,
   palette = ['#6ee7b7', '#fbbf24', '#60a5fa', '#f472b6', '#c084fc', '#f59e0b', '#34d399', '#2dd4bf', '#f97316', '#a78bfa'],
+  categoryColors = {},
   incomeColor = '#34d399',
   expenseColor = '#f97316',
 }: BudgetChartsConfig): { doughnutChart: Chart | null; trendChart: Chart | null } {
@@ -168,7 +170,7 @@ export function renderBudgetCharts({
           datasets: [
             {
               data: categoryBreakdown.map((entry) => entry.total),
-              backgroundColor: categoryBreakdown.map((_, index) => chartPalette[index % chartPalette.length]),
+              backgroundColor: categoryBreakdown.map((entry, index) => categoryColors[entry.category] ?? chartPalette[index % chartPalette.length]),
               borderColor: darkMode ? '#0f172a' : '#ffffff',
               borderWidth: 2,
               hoverOffset: 8,

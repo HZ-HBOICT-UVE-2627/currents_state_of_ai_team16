@@ -35,6 +35,7 @@
   export let categoryOptions: string[] = [];
   export let formatMoney: (value: number | string) => string = (value) => `${value}`;
   export let palette: string[] = [];
+  export let categoryColors: Record<string, string> = {};
   export let showDoughnutChart = true;
   export let showTrendChart = true;
   export let doughnutCanvas: HTMLCanvasElement | undefined;
@@ -60,7 +61,7 @@
           <p class="eyebrow">Overview</p>
           <h2>All transactions</h2>
         </div>
-        <button class="secondary-button" type="button" on:click={onCloseAllTransactions}>Close</button>
+        <button class="secondary-button" type="button" on:click={onCloseAllTransactions}>Back to dashboard</button>
       </div>
 
       <div class="all-transactions-list">
@@ -237,7 +238,7 @@
           {:else}
             {#each categoryBreakdown as item, index}
               <div class="legend-item">
-                <span class="dot" style={`background:${palette[index % palette.length]};`}></span>
+                <span class="dot" style={`background:${categoryColors[item.category] ?? palette[index % palette.length]};`}></span>
                 <span>{item.category}</span>
                 <strong>{formatMoney(item.total)}</strong>
               </div>
@@ -296,12 +297,12 @@
 
 <style>
   .all-transactions-view {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    box-shadow: var(--shadow);
-    padding: 18px;
-    margin-bottom: 24px;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    overflow-y: auto;
+    background: var(--bg);
+    padding: 0 max(18px, calc((100vw - 1100px) / 2));
   }
 
   .all-transactions-header {
@@ -310,11 +311,18 @@
     align-items: center;
     gap: 12px;
     margin-bottom: 16px;
+    padding: 24px 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
   }
 
   .all-transactions-list {
     display: grid;
     gap: 12px;
+    padding-bottom: 40px;
   }
 
   .all-transaction-row {

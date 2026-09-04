@@ -1,7 +1,7 @@
 import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, getCategoryChoicesForType } from '../categories.ts';
-import type { TransactionForm, TransactionType } from '../types';
+import type { CategorySettings, TransactionForm, TransactionType } from '../types';
 
-export function validateTransactionInput(form: TransactionForm): {
+export function validateTransactionInput(form: TransactionForm, settings?: CategorySettings): {
   valid: boolean;
   error: string | null;
   normalized: {
@@ -32,7 +32,7 @@ export function validateTransactionInput(form: TransactionForm): {
     };
   }
 
-  const validCategories = form.type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+  const validCategories = settings ? getCategoryChoicesForType(form.type, settings) : (form.type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES);
   if (!validCategories.includes(form.category)) {
     return {
       valid: false,
@@ -79,6 +79,3 @@ export function getDefaultTransactionType(): TransactionType {
   return 'expense';
 }
 
-export function getDefaultCategoryForType(type: TransactionType): string {
-  return getCategoryChoicesForType(type)[0];
-}

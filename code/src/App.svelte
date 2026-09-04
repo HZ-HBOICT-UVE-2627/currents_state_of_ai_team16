@@ -5,7 +5,8 @@
     formatMoney,
     serializeTransactionsCsv,
   } from './lib/finance.ts';
-  import { loadTheme, saveTheme, loadTransactions as loadStoredTransactions, saveTransactions as saveStoredTransactions } from './lib/storage.ts';
+  import { loadTheme, saveTheme, loadTransactions as loadStoredTransactions, saveTransactions as saveStoredTransactions, loadCategorySettings, saveCategorySettings, loadCustomTheme, saveCustomTheme } from './lib/storage.ts';
+  import { DEFAULT_CATEGORY_SETTINGS, normalizeCategorySettings } from './lib/categories.ts';
   import {
     destroyChart,
     getVisibleCustomCharts,
@@ -28,7 +29,7 @@
     removeTransactionById,
     startEditingTransaction as startTransactionEdit,
   } from './lib/services/transactionService.ts';
-  import type { Transaction, TransactionForm, TransactionType } from './lib/types';
+  import type { CategorySettings, Transaction, TransactionForm, TransactionType } from './lib/types';
   import BudgetDashboardView from './lib/views/BudgetDashboardView.svelte';
   import CsvFormatHelp from './lib/components/CsvFormatHelp.svelte';
   import ColorSettingsModal from './lib/components/ColorSettingsModal.svelte';
@@ -48,7 +49,6 @@
     normalizeThemeSettings,
     toRgba,
   } from './lib/colorTheme';
-  import { loadCustomTheme, saveCustomTheme } from './lib/storage.ts';
 
   const sampleTransactions: Transaction[] = [
     { id: 'seed-1', type: 'income', category: 'Salary', amount: 3200, date: '2026-09-01', note: 'Monthly salary', recurring: true },
@@ -69,7 +69,8 @@
   let ready = false;
   let fileInput: HTMLInputElement | undefined;
   let formMode: 'add' | 'edit' = 'add';
-  let form: TransactionForm = createBlankForm();
+  let categorySettings: CategorySettings = DEFAULT_CATEGORY_SETTINGS;
+  let form: TransactionForm = createBlankForm(categorySettings);
   let showCsvHelp = false;
   let showCustomizeColors = false;
   let showCustomizeCharts = false;
@@ -117,9 +118,41 @@
     saveStoredTransactions(localStorage, transactions);
   }
 
+  function saveCategories(nextSettings: CategorySettings): void {
+    const normalized = normalizeCategorySettings(nextSettings);
+    const renameMap = new Map<string, string>();
+    for (const type of ['income', 'expense'] as const) {
+      const oldNames = categorySettings[type];
+      const newNames = normalized[type];
+      if (oldNames.length === newNames.length) {
+        oldNames.forEach((oldName, index) => {
+          const newName = newNames[index];
+          if (newName && oldName !== newName) renameMap.set(`${type}:${oldName}`, newName);
+        });
+      }
+      const fallback = newNames[0];
+      const remaining = new Set(newNames);
+      oldNames.filter((oldName) => !remaining.has(oldName)).forEach((removedName) => renameMap.set(`${type}:${removedName}`, fallback));
+    }
+    transactions = transactions.map((item) => ({ ...item, category: renameMap.get(`${item.type}:${item.category}`) ?? item.category }));
+    categorySettings = normalized;
+    saveCategorySettings(localStorage, categorySettings);
+    form = updateFormType(form, categorySettings);
+    persistTransactions();
+    renderCharts();
+  }
+
+  function getEffectiveCategoryColors(): Record<string, string> {
+    const colors = { ...categorySettings.colors };
+    for (const category of [...categorySettings.income, ...categorySettings.expense]) {
+      colors[category] ??= getCategoryColor(category, themeSettings.palette);
+    }
+    return colors;
+  }
+
   function resetForm(): void {
     formMode = 'add';
-    form = createBlankForm();
+    form = createBlankForm(categorySettings);
   }
 
   function isDarkThemeBackground(hex: string): boolean {
@@ -144,6 +177,8 @@
 
   function resetThemeSettings(): void {
     themeSettings = DEFAULT_THEME_SETTINGS;
+    categorySettings = { ...categorySettings, colors: {} };
+    saveCategorySettings(localStorage, categorySettings);
     darkMode = false;
     applyTheme();
     applyCustomTheme();
@@ -237,7 +272,7 @@
   }
 
   function handleSubmit(): void {
-    const result = applyTransactionMutation({ transactions, form, formMode });
+    const result = applyTransactionMutation({ transactions, form, formMode, settings: categorySettings });
 
     if (!result.changed) {
       return;
@@ -272,7 +307,7 @@
   function confirmPendingImport(): void {
     if (pendingImportRows.length === 0) return;
 
-    transactions = confirmImports(transactions, pendingImportRows);
+    transactions = confirmImports(transactions, pendingImportRows, categorySettings);
     persistTransactions();
     renderCharts();
     pendingImportRows = [];
@@ -352,6 +387,7 @@
       categoryBreakdown: calculateCategoryBreakdown(transactions),
       trendData: calculateTrendData(transactions),
       palette: themeSettings.palette,
+      categoryColors: getEffectiveCategoryColors(),
       incomeColor: themeSettings.income,
       expenseColor: themeSettings.expense,
     });
@@ -378,6 +414,8 @@
   onMount(() => {
     darkMode = loadTheme(localStorage, false);
     themeSettings = loadCustomTheme(localStorage, DEFAULT_THEME_SETTINGS);
+    categorySettings = loadCategorySettings(localStorage);
+    form = createBlankForm(categorySettings);
     applyTheme();
     applyCustomTheme();
     loadTransactions();
@@ -399,7 +437,7 @@
   $: recentTransactions = sortedTransactions.slice(0, 5);
   $: categoryBreakdown = calculateCategoryBreakdown(transactions);
   $: trendData = calculateTrendData(transactions);
-  $: categoryOptions = getCategoryOptions(form.type);
+  $: categoryOptions = getCategoryOptions(form.type, categorySettings);
   $: palette = themeSettings.palette;
 </script>
 
@@ -435,9 +473,10 @@
   onConfirmPendingImport={confirmPendingImport}
   onCancelPendingImport={cancelPendingImport}
   onFormTypeChange={() => {
-    form = updateFormType(form);
+    form = updateFormType(form, categorySettings);
   }}
   categoryOptions={categoryOptions}
+  categoryColors={getEffectiveCategoryColors()}
   formatMoney={formatMoney}
   palette={palette}
   showDoughnutChart={themeSettings.showDoughnutChart}
@@ -451,10 +490,13 @@
   onClose={() => (showCustomizeColors = false)}
   onSave={saveThemeSettings}
   onReset={resetThemeSettings}
-  onApplyPreset={(mode) => {
+  onApplyPreset={(mode: ThemePresetName) => {
     applyThemePreset(mode);
     showCustomizeColors = false;
   }}
+  categorySettings={categorySettings}
+  categoryPalette={themeSettings.palette}
+  onSaveCategories={saveCategories}
 />
 
 <ChartSettingsModal

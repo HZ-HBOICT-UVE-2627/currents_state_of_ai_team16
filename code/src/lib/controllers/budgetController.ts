@@ -1,12 +1,6 @@
-import {
-  EXPENSE_CATEGORIES,
-  INCOME_CATEGORIES,
-  getCategoryChoicesForType,
-  normalizeImportedCategory,
-} from '../categories.ts';
-import { toIsoDate } from '../finance.ts';
+import { getCategoryChoicesForType, normalizeImportedCategory } from '../categories.ts';
+import type { CategorySettings } from '../types';
 import type { CategoryBreakdownEntry, ImportRow, SummaryTotals, Transaction, TransactionForm, TransactionType, TrendChartData } from '../types';
-import { validateTransactionInput } from '../services/validationService.ts';
 
 export function makeId(): string {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
@@ -16,97 +10,21 @@ export function makeId(): string {
   return `txn-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
-export function makeBlankForm(): TransactionForm {
-  return {
-    id: null,
-    type: 'expense',
-    category: 'Groceries',
-    amount: '',
-    date: toIsoDate(new Date()),
-    note: '',
-    recurring: false,
-  };
-}
-
-export function updateFormType(form: TransactionForm): TransactionForm {
-  const validCategories = form.type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+export function updateFormType(form: TransactionForm, settings?: CategorySettings): TransactionForm {
+  const validCategories = getCategoryChoicesForType(form.type, settings);
 
   if (!validCategories.includes(form.category)) {
-    return { ...form, category: getCategoryChoicesForType(form.type)[0] };
+    return { ...form, category: validCategories[0] };
   }
 
   return form;
 }
 
-export function submitTransaction({
-  transactions,
-  form,
-  formMode,
-}: {
-  transactions: Transaction[];
-  form: TransactionForm;
-  formMode: 'add' | 'edit';
-}): {
-  transactions: Transaction[];
-  changed: boolean;
-  nextForm: TransactionForm;
-  nextMode: 'add' | 'edit';
-} {
-  const validation = validateTransactionInput(form);
-
-  if (!validation.valid) {
-    return { transactions, changed: false, nextForm: makeBlankForm(), nextMode: formMode };
-  }
-
-  const submitted: Transaction = {
-    id: form.id ?? makeId(),
-    type: form.type,
-    category: validation.normalized.category,
-    amount: Number(validation.normalized.amount.toFixed(2)),
-    date: form.date,
-    note: validation.normalized.note,
-    recurring: !!validation.normalized.recurring,
-  };
-
-  const nextTransactions = formMode === 'edit'
-    ? transactions.map((item) => (item.id === submitted.id ? submitted : item))
-    : [submitted, ...transactions];
-
-  return {
-    transactions: nextTransactions,
-    changed: true,
-    nextForm: makeBlankForm(),
-    nextMode: 'add',
-  };
-}
-
-export function startEditTransaction(item: Transaction): {
-  formMode: 'edit';
-  form: TransactionForm;
-} {
-  return {
-    formMode: 'edit',
-    form: {
-      id: item.id,
-      type: item.type,
-      category: item.category,
-      amount: String(item.amount),
-      date: item.date,
-      note: item.note,
-      recurring: item.recurring,
-    },
-  };
-}
-
-export function removeTransactionFromList(transactions: Transaction[], id: string): Transaction[] {
-  return transactions.filter((item) => item.id !== id);
-}
-
-export function confirmImports(transactions: Transaction[], pendingImportRows: ImportRow[]): Transaction[] {
+export function confirmImports(transactions: Transaction[], pendingImportRows: ImportRow[], settings?: CategorySettings): Transaction[] {
   const imported: Transaction[] = pendingImportRows.map((row) => ({
     id: makeId(),
     type: row.type,
-    category: normalizeImportedCategory(row.type, row.category),
+    category: normalizeImportedCategory(row.type, row.category, settings),
     amount: Number(Math.abs(Number(row.amount)).toFixed(2)),
     date: row.date,
     note: row.note.trim() || 'Imported transaction',
@@ -193,6 +111,6 @@ export function calculateTrendData(items: Transaction[]): TrendChartData {
   return { labels, income, expense };
 }
 
-export function getCategoryOptions(type: TransactionType): string[] {
-  return getCategoryChoicesForType(type);
+export function getCategoryOptions(type: TransactionType, settings?: CategorySettings): string[] {
+  return getCategoryChoicesForType(type, settings);
 }
