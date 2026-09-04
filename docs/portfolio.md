@@ -63,8 +63,10 @@
 > *State of AI in Zeeland* - given by Mischa
 
 1. **Summary**
+   Various companies within Zeeland make use of AI. These are companies, for example, within the sectors of fishing, agriculture, retail, tourism and service. Examples of use of AI are dynamic pricing utilities for Maxxton Solutions and van der Valk hotels or image recognition utilities for sorting of fruit and potatoes.
 
 2. **Key Points**
+   
 
 3. **Questions**
 3. Questions

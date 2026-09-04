@@ -3,6 +3,10 @@
         "npx create-vite@latest": true,
         "git add": true,
         "git commit": true,
-        "git push": true
+        "git push": true,
+        "Push-Location": true,
+        "npm run build": true,
+        "npm test": true,
+        "Pop-Location": true
     }
 }
