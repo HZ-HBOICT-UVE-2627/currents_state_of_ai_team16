@@ -293,6 +293,11 @@
       {/each}
     </section>
   {/if}
+
+  <footer class="ai-credit">
+    <p><strong>AI use in this project</strong></p>
+    <p>AI assisted with the initial Svelte structure, implementation ideas, debugging, UI refinement, and test support. The team reviewed, adapted, and validated all resulting work.</p>
+  </footer>
 </div>
 
 <style>
@@ -351,5 +356,28 @@
     min-width: unset;
     width: auto;
     padding: 0.5rem 0.8rem;
+  }
+
+  .ai-credit {
+    margin-top: 32px;
+    padding: 18px 4px 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .ai-credit p {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .ai-credit p + p {
+    margin-top: 4px;
+  }
+
+  .ai-credit strong {
+    color: var(--text);
+    font-size: 0.82rem;
   }
 </style>
