@@ -155,6 +155,10 @@
 
 ## You, Human, Technology and AI (individual)
 
+### Roos
+
+### Mika
+
 
 ## Design Principles for working with AI (as a group)
 
