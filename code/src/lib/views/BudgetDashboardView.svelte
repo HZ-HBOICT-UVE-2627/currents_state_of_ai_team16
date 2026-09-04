@@ -296,7 +296,7 @@
 
   <footer class="ai-credit">
     <p><strong>AI use in this project</strong></p>
-    <p>AI assisted with the initial Svelte structure, implementation ideas, debugging, UI refinement, and test support. The team reviewed, adapted, and validated all resulting work.</p>
+    <p>AI assisted with the initial Svelte structure, implementation ideas, debugging, UI refinement, and test support. Coincidentally, the team was in the same room.</p>
   </footer>
 </div>
 
