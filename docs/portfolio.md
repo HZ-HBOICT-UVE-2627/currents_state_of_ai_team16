@@ -158,6 +158,12 @@
 ## You, Human, Technology and AI (individual)
 
 ### Roos
+   I personally believe that AI should be used as a supporting tool while coding, but never as the full author of a project. AI can be extremely useful for speeding up development, solving specific problems, and helping with repetitive tasks, but I think it is important that the developer remains responsible for the overall structure and logic of the application.
+
+   When building an application like we did during this project, I believe it is important for me to first come up with the architecture of the application myself. This means thinking about how the different components should work together, how data should be handled, what technologies should be used, and how the application should be structured. I would also want to write the first parts of the code myself. Doing this would give me a much stronger understanding of how the application works before introducing AI into the development process.
+   
+   Once I have established that foundation, I think AI becomes much more valuable. For example, if I need to implement a larger feature that I already understand and would be capable of writing myself, I could use AI to generate parts of the code and speed up the process. The important difference is that I would understand what the generated code is supposed to do and would therefore be able to review, modify, and debug it when necessary.
+
 
 ### Mika
 
