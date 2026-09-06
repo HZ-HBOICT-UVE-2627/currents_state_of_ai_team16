@@ -158,6 +158,12 @@
 ## You, Human, Technology and AI (individual)
 
 ### Roos
+   I personally believe that AI should be used as a supporting tool while coding, but never as the full author of a project. AI can be extremely useful for speeding up development, solving specific problems, and helping with repetitive tasks, but I think it is important that the developer remains responsible for the overall structure and logic of the application.
+
+   When building an application like we did during this project, I believe it is important for me to first come up with the architecture of the application myself. This means thinking about how the different components should work together, how data should be handled, what technologies should be used, and how the application should be structured. I would also want to write the first parts of the code myself. Doing this would give me a much stronger understanding of how the application works before introducing AI into the development process.
+   
+   Once I have established that foundation, I think AI becomes much more valuable. For example, if I need to implement a larger feature that I already understand and would be capable of writing myself, I could use AI to generate parts of the code and speed up the process. The important difference is that I would understand what the generated code is supposed to do and would therefore be able to review, modify, and debug it when necessary.
+
 
 ### Mika
 
@@ -228,24 +234,26 @@ During the demo you will be given feedback on the following elements. What was y
 
 ### 1. AI usage
 
-- Status: To be completed after the official demo / expert review.
-- Expected evaluation focus: clear use of AI to support development, design iteration, and workflow efficiency; evidence of human oversight and critical review.
+- Status: Okay
+- Summary: Although our app was functional and fully implemented, we initially relied too heavily on AI to build most of the application. As a result, we did not fully understand all of the individual parts of the code and how they worked together. However, throughout the project, we became more capable of using AI effectively to solve specific problems, such as fixing bugs and implementing new features.
 
 ### 2. Tech stack and coding standards
 
-- Status: Partially completed through our Svelte + Vite + Chart.js project.
-- Summary: The stack was simple, coherent, and suitable for a browser-based productivity tool. The app was built in a maintainable way and refined with workable coding standards and validation.
+- Status: Good
+- Summary: Our chosen tech stack was appropriate for the application, and we were able to explain and justify why we chose the frameworks and technologies used in the project.
 
 ### 3. Business value
 
-- Status: To be completed after the demo.
-- Summary: The project addresses a real user need: a private, no-sign-up personal budgeting tool with local persistence, category insights, and CSV support. That makes it relevant for students and individuals who want a simple finance tracker without a cloud account.
+- Status: Good
+- Summary: The experts considered the idea behind the application useful and relevant, as it serves a clear purpose. One of the experts suggested making the application publicly accessible so that other students could use it, which we had already done through GitHub Pages. The concept of a budget-tracking application that does not require users to create an account or have their financial data stored in an external data center was also viewed positively. This gives the application a clear focus on accessibility and privacy.
 
 ### 4. User experience
 
-- Status: To be completed after the demo.
-- Summary: The app focuses on clarity, visual summaries, and practical interaction. Key UX improvements included dark mode support, consistent button styling, and clear chart-based summaries for transactions and spending patterns.
+- Status: Okay
+- Summary: Although the application already includes a considerable amount of customization, we were advised to expand its functionality by adding a savings goal feature. This would allow users to set a custom amount they want to save and track their progress toward reaching that goal.
 
 ### Final note
 
-This portfolio is a solid draft for the course submission. The missing content that depends on the formal guest lectures and final expert feedback should be filled in individually and as a group before the final hand-in.
+Overall, the application works well and includes several useful and creative features. However, our initial overreliance on AI meant that we did not fully understand every part of the application's code and internal workings.
+
+The main lesson we took from the feedback is that AI should be used more as a supporting tool rather than as a replacement for understanding and writing the code ourselves. In future projects, we would use AI more selectively, like for example, to help debug problems, explain unfamiliar concepts, or assist with specific features, while making sure that we understand and remain responsible for the code we implement.
