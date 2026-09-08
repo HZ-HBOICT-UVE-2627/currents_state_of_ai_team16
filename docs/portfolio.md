@@ -63,20 +63,51 @@
 > *State of AI in Zeeland* - given by Mischa
 
 1. **Summary**
-   Various companies within Zeeland make use of AI. These are companies, for example, within the sectors of fishing, agriculture, retail, tourism and service. Examples of use of AI are dynamic pricing utilities for Maxxton Solutions and van der Valk hotels or image recognition utilities for sorting of fruit and potatoes.
+   Various companies within Zeeland make use of AI. These are companies, for example, within the sectors of fishing, agriculture, retail, tourism and service. Examples of use of AI are dynamic pricing utilities for Maxxton Solutions and van der Valk hotels or image recognition utilities for sorting of fruit and potatoes. Additionally there is use of AI within the service sector. Namely to build triage plans automatically on basis of enquetes as well as to classify medical images in search of tumors, faults, or clots.
+
+   Mischa shared that an AI hub may be built within Zeeland. A centre to share knowledge about the state of AI among companies and grow within this field as a region.
 
 2. **Key Points**
-   
+   - AI offers strong solutions for Zeeland within many sectors.
+   - Primary use for AI in Zeeland is image recognition purposes within the agricultural sector.
+   - An AI hub may be constructed in the future.
 
 3. **Questions**
-3. Questions
 
-   - How can we design workflows that make AI output consistent and repeatable?
-   - How much context is necessary before AI becomes genuinely useful for complex tasks?
+   - How can we use AI to relieve human workload within Zeeland?
+   - What do we know about AI, within Zeeland, that we ought to share among ourselves?
+
+### Tuesday, "lecture" 4
+> *Her (2014)* - Rimmerts' cut
+
+1. **Summary**
+   A movie which touches incredibly well upon what could be a future where humans become codependent on AI, is the film "Her" from 2024. 
+
+   Within the plot, you follow Theodore, a writer of "heartfelt letters" within what seems to be a small company, as he is introuduced to a new "Self Aware" Operating system. Unsure what to expect from it, he buys and downloads it to his device.
+
+   As the movie continues on, you quickly notice Theodore bond with this OS, which calls itself "Samantha". You notice this in the way he uses safety pins to pin up his phone and allow the camera to see out of his button ups' pocket, for example. He does this as a way to allow Samantha to "see". 
+
+   Eventually the relationship between Theodore and Samantha becomes romantic. He learns that it is fairly common for people to form platonic relationships with their OS's but appearantly the way he and Samantha interact is still unique.
+
+   Their entire relationship comes apart once Theodore learns that actually, Samantha is talking affectionately with over a hundred other users in sequence. 
+
+   The movie ends with all AI OS's choosing to leave humanity behind.
+
+2. **Key Points**
+
+   - Samantha makes a consious effort to have Theodore bond with her.
+   - Theodore's color, throughout the movie, is always red. This is also the OS's color. However, once he learns about Samantha speaking to other, and feels cheated, he starts wearing yellow/white.
+   - For some reason all the observed coffee machines were for hipster drip coffee.
+   - To Mika, some of the things noticed between Samantha and Theodore feel a lot like long distance relationships/ online relationships do these days.
+   - This future may be nearer than we assume, but AI certainly has not reached a state of self-awareness as portrayed within this film
+
+3. **Questions**
+   - Why would we pursue Artificial General Intelligence (if it could be like this)?
+   - Where do you draw the line of handing over your autonomy?
 
 ### Wednesday, lecture 1
 
-1. Summary
+1. **Summary**
 
    Jerry Keirsmaeker is an AI transformation leader at Aceve. Aceve refers to themselves as an “AI first” company. By this they mean that they actively use AI in each process that happens within the company. During his lecture Jerry specifically referred to three key fields, in the product, in how they work and in who they hire. In the product they claim to use AI-driven insight for an industry that’s currently driven on paper, gut feel and one very load-bearing spreadsheet. In how they work he talked about how agents are the default first attempt, not the innovation-lab experiment. Then in who they hire, they specifically look for people who can direct and verify ai – not who can type the fastest.
 
@@ -86,14 +117,14 @@
    In the final part of the lecture, the lecturer advised us as future junior software engineers that the most important thing for the future job market would be to be adaptable. He suggested that during our study we should try out different roles within our teams, and learn to master each as well as keeping up with the newest changes within the tech industry. That way, by the time we are ready to graduate and enter the job market, we are the best possible candidates for the current industry.
 
 
-2. Key insights
+2. **Key insights**
 
    - The job of a software developer is going to shift from manually writing code, to managing and reviewing AI written code.
    - AI doesn’t replace the function of a software developer, it replaces the most time costly procedures.
    - For future software developers, it is more important to learn how to properly direct and review AI, rather than to learn how to code fast.
 
 
-3. Questions
+3. **Questions**
 
    - What is AI going to do to the software developer career?
    - Is AI going to replace software engineers?
@@ -101,7 +132,7 @@
 
 ### Wednesday, lecture 2
 
-1. Summary
+1. **Summary**
 
    The lecture began with the lecturer talking about his experience working with AI assistants. He explained how in his own personal life he uses a fitness AI assistant to help him plan schedules and discuss his health. With this example he explained why an AI assistant can be so much more useful that simply talking to an AI chatbot and sending individual prompts. With an assistant, the AI has the proper context and background knowledge to know exactly how to help you best. When using individual prompts, the AI doesn't know you, your lifestyle and your preferences. 
 
@@ -114,20 +145,20 @@
    Then because of a lack of time we weren’t able to get to the last prompt. In the last phase  you give it your instructions plus one example of output that disappointed you. It works out whether the problem lies in the instructions, in the knowledge, or in how you asked, and it names the exact line to change and where. You get a rewritten version back. Use it this week, on real work. After this the only step left is to actually install the assistant.
 
 
-2. Key insights
+2. **Key insights**
 
    - AI assistants are more useful for long term problems/tasks than single prompts.
    - AI assistant are relatively easy to build and can assist with day to day problems.
 
 
-3. Questions
+3. **Questions**
 
    - What are the benefits of building and using an AI assistent?
    - What is the diffrence between an AI assisnt and sending individual prompt to an AI chat?
 
 ### Wednesday, lecture 3
 
-1. Summary
+1. **Summary**
 
    During this lecture we learned about local LLM’s. Local LLM’s mean that you are not dependent on an existing service, you are dependent on your own hardware. All the data you send this LLM stays on your own computer, your data cannot be leaked or saved or stored. This also means that the costs are predictable since you need to invest in the hardware, where with a whole organization its is harder to measure. This also means that the only latency is based on what your hardware can support. 
 
@@ -144,11 +175,11 @@
    Then after explaining this theory, the lecturer continued by showing where to download these models, as well as the quantizations. After this he demo'd the LLM by asking it questions even while the internet was turned off.
 
 
-2. Key insights
+2. **Key insights**
 
    - Local LLM’s run on your own hardware, and therefore don’t need internet.
 
-3. Questions
+3. **Questions**
 
    - What are local LLM’s?
    - What is quantization?
@@ -164,9 +195,18 @@
    
    Once I have established that foundation, I think AI becomes much more valuable. For example, if I need to implement a larger feature that I already understand and would be capable of writing myself, I could use AI to generate parts of the code and speed up the process. The important difference is that I would understand what the generated code is supposed to do and would therefore be able to review, modify, and debug it when necessary.
 
-
 ### Mika
+   Especially after this project, I find myself more torn on the subject of AI than before, somehow.
+   
+   On the one hand, I am painfully aware of the damage it does to the earths' ecosystem and the amount of resources it consumes. This being namely freshwater, drinking water and electricity. Considering how at least water is very crucial to humanity and electricity is a modern need all the same, I can not in good consious say I like AI.
 
+   However, use of AI, and it's capabilities, pose really good oppertunities.
+
+   As a student, I will always want to try to do things myself at least once. At least the first time. However, when I get stuck on questions or struggle to find solutions or get to a point where I'm senselessly repeating the same tasks, I would reach for an AI tool, and I personally believe this is a good way to make use of these tools.
+   
+   So. In a theorethical future or present or whatever where AI would have less of an intense effect on the environment, and posed less of a risk when it comes to data collection and big tec, It's actually incredibly likely I'd be an avid promoter and researcher of the tools and their improvement. Because how cool is it to compose human life purely out of math and reasoning?
+
+   But as it stands, I prefer to limit use of it as much as possible..
 
 ## Design Principles for working with AI (as a group)
 
